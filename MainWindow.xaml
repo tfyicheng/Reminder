@@ -1,0 +1,340 @@
+﻿<Window
+    x:Class="Reminder.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Reminder"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Reminder"
+    Width="400"
+    Height="500"
+    MinWidth="400"
+    MinHeight="500"
+    ResizeMode="CanResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <hc:TransitioningContentControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!--  第一张卡片自适应高度  -->
+                <RowDefinition Height="*" />
+                <!--  DataGrid卡片填充剩余空间  -->
+            </Grid.RowDefinitions>
+
+            <hc:Card
+                Grid.Row="0"
+                Width="auto"
+                Height="auto"
+                Margin="10"
+                BorderThickness="0"
+                Effect="{DynamicResource EffectShadow2}">
+                <!--<hc:Card.Header>
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        Text="Title"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="NoWrap" />
+                </hc:Card.Header>-->
+
+                <Grid Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid
+                            Grid.Row="0"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                标题
+                            </TextBlock>
+
+                            <hc:TextBox
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="输入标题"
+                                hc:InfoElement.ShowClearButton="True" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="1"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                内容
+                            </TextBlock>
+
+                            <hc:TextBox
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="输入内容"
+                                hc:InfoElement.ShowClearButton="True" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="2"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                时间
+                            </TextBlock>
+
+                            <!--<hc:DateTimePicker
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="选择时间"
+                                hc:InfoElement.ShowClearButton="True"
+                                Style="{StaticResource DateTimePickerExtend}" />-->
+
+                            <hc:DateTimePicker
+                                x:Name="timePicker"
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="选择时间"
+                                hc:InfoElement.ShowClearButton="True"
+                                Style="{StaticResource DateTimePickerPlus}" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="3"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                循环
+                            </TextBlock>
+
+
+
+                            <hc:ButtonGroup
+                                x:Name="btnGroup"
+                                Grid.Column="1"
+                                Height="30"
+                                VerticalAlignment="Center">
+                                <RadioButton Content="关闭" IsChecked="True" />
+                                <RadioButton Content="每日" />
+                                <RadioButton Content="工作日" />
+                                <RadioButton Content="每周" />
+                                <RadioButton Content="每月" />
+                            </hc:ButtonGroup>
+                        </Grid>
+
+
+
+                        <Grid
+                            Grid.Row="4"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                动作
+                            </TextBlock>
+
+                            <StackPanel
+                                Grid.Column="1"
+                                Height="30"
+                                Orientation="Horizontal">
+                                <RadioButton Content="系统通知" IsChecked="True" />
+                                <RadioButton Margin="30,0,0,0" Content="右下角弹窗" />
+                                <RadioButton Margin="30,0,0,0" Content="中间弹窗" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="5"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                状态
+                            </TextBlock>
+
+
+                            <ToggleButton
+                                Grid.Column="1"
+                                Height="20"
+                                Margin="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                hc:VisualElement.HighlightBrush="{DynamicResource SuccessBrush}"
+                                Content="活动"
+                                IsChecked="True"
+                                Style="{StaticResource ToggleButtonSwitch.Small}" />
+                        </Grid>
+
+
+                    </Grid>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Margin="0,7,0,0"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="0,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Content="添加"
+                            Style="{StaticResource ButtonPrimary}" />
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Content="新增提醒"
+                            Style="{StaticResource ButtonPrimary}" />
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Content="保存"
+                            Style="{StaticResource ButtonPrimary}" />
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Content="编辑"
+                            Style="{StaticResource ButtonSuccess}" />
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Click="Cancel"
+                            Content="取消"
+                            Style="{StaticResource ButtonWarning}" />
+
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Click="DeletDate"
+                            Content="删除"
+                            Style="{StaticResource ButtonDanger}" />
+
+                        <Button
+                            Margin="10,0,0,0"
+                            hc:BorderElement.CornerRadius="5"
+                            Content="按钮"
+                            Style="{StaticResource ButtonInfo}" />
+                    </StackPanel>
+
+                </Grid>
+            </hc:Card>
+
+            <hc:Card
+                Grid.Row="1"
+                Width="auto"
+                Height="auto"
+                Margin="10,5,10,10"
+                BorderThickness="0"
+                Effect="{DynamicResource EffectShadow2}">
+                <!--<hc:Card.Header>
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource TextBlockDefault}"
+                        Text="提醒列表"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="NoWrap" />
+                </hc:Card.Header>-->
+
+                <Grid>
+
+
+                    <DataGrid
+                        x:Name="dataGrid"
+                        Margin="0"
+                        AutoGenerateColumns="False"
+                        Background="#F6F7F8"
+                        HorizontalScrollBarVisibility="Auto"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding DataList}"
+                        VerticalScrollBarVisibility="Auto">
+
+                        <!--  手动定义列（避免自动列宽问题）  -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding ID}"
+                                Header="ID" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Title}"
+                                Header="标题" />
+                            <DataGridTextColumn
+                                Width="*"
+                                hc:Poptip.Content="{Binding Content}"
+                                Binding="{Binding Content}"
+                                Header="内容" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Time}"
+                                Header="时间" />
+
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Type}"
+                                Header="循环类型" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Action}"
+                                Header="提醒动作" />
+
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Status}"
+                                Header="运行状态" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </hc:Card>
+        </Grid>
+    </hc:TransitioningContentControl>
+
+</Window>
