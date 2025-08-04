@@ -16,3 +16,4 @@ D:\work\demo\WPF\Reminder\obj\Debug\set.baml
 D:\work\demo\WPF\Reminder\obj\Debug\App.baml
 D:\work\demo\WPF\Reminder\obj\Debug\AppNotification.g.cs
 D:\work\demo\WPF\Reminder\obj\Debug\AppNotification.baml
+D:\work\demo\WPF\Reminder\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -8,19 +8,19 @@ namespace Reminder
         {
         }
 
-        private static int id;//id
+        private int id;//id
 
-        private static String title;//标题
+        private String title;//标题
 
-        private static String content;//内容
+        private String content;//内容
 
-        private static String time; //时间
+        private String time; //时间
 
-        private static int type;//循环类型
+        private int type;//循环类型  1关闭  2每日  3工作日  4每月
 
-        private static int action;//提醒动作
+        private int action;//提醒动作 1系统通知  2右下角弹窗  3中间弹窗
 
-        private static int status;//状态
+        private int status;//状态 0停止 1活动
 
         public int ID
         {
@@ -113,7 +113,7 @@ namespace Reminder
 
             set
             {
-                if (status != value)
+                if (status != value && Helper.CheckListData(this))
                 {
                     status = value;
                     OnPropertyChanged("Status");

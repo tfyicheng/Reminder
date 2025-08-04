@@ -102,11 +102,16 @@
       <DependentUpon>AppNotification.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="IntEqualsVisibilityConverter.cs" />
+    <Compile Include="IntToBooleanConverter.cs" />
+    <Compile Include="IntToContentConverter.cs" />
+    <Compile Include="IntToRadioButtonConverter.cs" />
     <Compile Include="ListDataModel.cs" />
     <Compile Include="ReminderModel.cs" />
     <Compile Include="Set.xaml.cs">
       <DependentUpon>Set.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimeFormatConverter.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Page Include="AppNotification.xaml">
       <SubType>Designer</SubType>

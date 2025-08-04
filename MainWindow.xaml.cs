@@ -1,8 +1,10 @@
 ﻿using NtpTestDemo;
 using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
-
+using MessageBox = HandyControl.Controls.MessageBox;
 namespace Reminder
 {
     /// <summary>
@@ -21,11 +23,32 @@ namespace Reminder
 
             this.DataContext = reminder;
 
-            reminder.test();
 
             ic = new myIcon();
             ic.Icon();
 
+
+            (DataContext as ReminderModel).DataList.CollectionChanged += (s, e) =>
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    // 获取刚添加的项
+                    var newItem = e.NewItems[0]; // 就是插入的新对象
+
+                    // 等待 UI 更新后滚动
+                    dataGrid.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        dataGrid.ScrollIntoView(newItem);
+                    }), System.Windows.Threading.DispatcherPriority.ContextIdle);
+                }
+            };
+
+            reminder.test();
+        }
+
+        private void Main_Loaded(object sender, RoutedEventArgs e)
+        {
+            StartProCheck();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -71,7 +94,9 @@ namespace Reminder
         private void Cancel(object sender, RoutedEventArgs e)
         {
 
-            Helper.PopMessageCenter("标题", "内容/n/r内容");
+            reminder.test();
+
+            //Helper.PopMessageCenter("标题", "内容/n/r内容");
 
             //MessageBox.Show("内容/n/r内容", "标题", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -85,6 +110,47 @@ namespace Reminder
             //    StyleKey = "MessageBoxCustom"
             //});
         }
+
+
+
+        //重复程序检查
+        public void StartProCheck()
+        {
+            System.Diagnostics.Process[] myProcess = System.Diagnostics.Process.GetProcessesByName("Reminder");
+            if (myProcess == null)
+            {
+                return;
+            }
+
+            if (myProcess.Length > 1)
+            {
+                MessageBoxResult result = MessageBox.Show("是否继续运行？", "检测到后台存在其他实例", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    Process proceMain = Process.GetCurrentProcess();
+                    //Console.WriteLine(proceMain.ProcessName +"="+ proceMain.Id);
+                    Process[] processes = Process.GetProcesses();
+                    foreach (Process process in processes)//获取所有同名进程id
+                    {
+                        //Console.WriteLine(process.ProcessName+"="+process.Id);
+                        if (process.ProcessName == "Reminder")
+                        {
+                            if (process.Id != proceMain.Id)//根据进程id删除所有除本进程外的所有相同进程
+                            {
+                                process.Kill();
+                                return;
+                            }
+                        }
+                    }
+                }
+                else if (result == MessageBoxResult.Cancel)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            }
+        }
+
 
 
         //private void Test(object sender, RoutedEventArgs e)
