@@ -14,6 +14,7 @@
     Loaded="Main_Loaded"
     ResizeMode="CanResize"
     WindowStartupLocation="CenterScreen"
+    PreviewKeyDown="Window_PreviewKeyDown"
     mc:Ignorable="d">
 
     <Window.Resources>
@@ -178,9 +179,18 @@
                                 VerticalAlignment="Center"
                                 IsEnabled="True">
                                 <RadioButton Content="一次性" IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=1}" />
-                                <RadioButton Content="每日" IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}" />
-                                <RadioButton Content="工作日" IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}" />
-                                <RadioButton Content="每月" IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=4}" />
+                                <RadioButton
+                                    Content="每日"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}"
+                                    ToolTip="默认截取时分秒" />
+                                <RadioButton
+                                    Content="工作日"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}"
+                                    ToolTip="默认截取时分秒" />
+                                <RadioButton
+                                    Content="每月"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=4}"
+                                    ToolTip="默认截取日时分秒" />
                             </hc:ButtonGroup>
                         </Grid>
 
@@ -210,19 +220,22 @@
                                 <RadioButton
                                     Content="系统通知"
                                     GroupName="ActionGroup"
-                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=1}" />
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=1}"
+                                    ToolTip="该api通知不会记录进系统通知栏，几秒后自动消失，需要保留通知建议右下角弹窗" />
 
                                 <RadioButton
                                     Margin="30,0,0,0"
                                     Content="右下角弹窗"
                                     GroupName="ActionGroup"
-                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}" />
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}"
+                                    ToolTip="右下角弹窗通知，需要手动关闭" />
 
                                 <RadioButton
                                     Margin="30,0,0,0"
                                     Content="中间弹窗"
                                     GroupName="ActionGroup"
-                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}" />
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}"
+                                    ToolTip="当程序界面关闭时，桌面居中弹窗，当主程序未关闭时，程序界面居中弹窗，需要手动关闭" />
                             </StackPanel>
                         </Grid>
 

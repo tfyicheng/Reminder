@@ -27,7 +27,7 @@ namespace Reminder
                     case 3:
                         return time.ToString("HH:mm:ss");
                     case 4:
-                        return time.ToString("MM-dd HH:mm:ss");
+                        return time.ToString("dd HH:mm:ss");
                     default:
                         return time.ToString("yyyy-MM-dd HH:mm:ss");
                 }

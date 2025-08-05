@@ -1,125 +1,92 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Reminder;
+using System;
 
-namespace Reminder
+[JsonObject(MemberSerialization.OptIn)]
+public class ListDataModel : ViewModelBase
 {
-    public class ListDataModel : ViewModelBase
+    public ListDataModel() : base(null) { }
+
+    private int id;
+    private string title;
+    private string content;
+    private string time;
+    private int type;
+    private int action;
+    private int status;
+
+    [JsonProperty]
+    public int ID
     {
-        public ListDataModel() : base(null)
+        get => id;
+        set { id = value; OnPropertyChanged("ID"); }
+    }
+
+    [JsonProperty]
+    public string Title
+    {
+        get => title;
+        set { title = value; OnPropertyChanged("Title"); }
+    }
+
+    [JsonProperty]
+    public string Content
+    {
+        get => content;
+        set { content = value; OnPropertyChanged("Content"); }
+    }
+
+    [JsonProperty]
+    public string Time
+    {
+        get => time;
+        set { time = value; OnPropertyChanged("Time"); }
+    }
+
+    [JsonProperty]
+    public int Type
+    {
+        get => type;
+        set
         {
+            type = value;
+            OnPropertyChanged("Type");
         }
+    }
 
-        private int id;//id
+    [JsonProperty]
+    public int Action
+    {
+        get => action;
+        set { action = value; OnPropertyChanged("Action"); }
+    }
 
-        private String title;//标题
-
-        private String content;//内容
-
-        private String time; //时间
-
-        private int type;//循环类型  1关闭  2每日  3工作日  4每月
-
-        private int action;//提醒动作 1系统通知  2右下角弹窗  3中间弹窗
-
-        private int status;//状态 0停止 1活动
-
-        public int ID
-        {
-            get => id;
-
-            set
+    [JsonProperty]
+    public int Status
+    {
+        get => status;
+        set
+        {   // && 
+            if (status != value)
             {
-                if (id != value)
+                if (value == 1)
                 {
-                    id = value;
-                    OnPropertyChanged("ID");
+                    if (Helper.CheckListData(this))
+                    {
+
+                        status = value;
+                        OnPropertyChanged("Status");
+                    }
                 }
-            }
-        }
-
-        public String Title
-        {
-            get => title;
-
-            set
-            {
-                if (title != value)
-                {
-                    title = value;
-                    OnPropertyChanged("Title");
-                }
-            }
-        }
-
-        public String Content
-        {
-            get => content;
-
-            set
-            {
-                if (content != value)
-                {
-                    content = value;
-                    OnPropertyChanged("Content");
-                }
-            }
-        }
-
-
-        public String Time
-        {
-            get => time;
-
-            set
-            {
-                if (time != value)
-                {
-                    time = value;
-                    OnPropertyChanged("Time");
-                }
-            }
-        }
-
-        public int Type
-        {
-            get => type;
-
-            set
-            {
-                if (type != value)
-                {
-                    type = value;
-                    OnPropertyChanged("Type");
-                }
-            }
-        }
-
-        public int Action
-        {
-            get => action;
-
-            set
-            {
-                if (action != value)
-                {
-                    action = value;
-                    OnPropertyChanged("Action");
-                }
-            }
-        }
-
-        public int Status
-        {
-            get => status;
-
-            set
-            {
-                if (status != value && Helper.CheckListData(this))
+                else
                 {
                     status = value;
                     OnPropertyChanged("Status");
                 }
             }
         }
-
     }
+
+    public DateTime? LastTriggeredTime { get; set; }
+
 }

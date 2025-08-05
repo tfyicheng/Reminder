@@ -67,6 +67,9 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -107,7 +110,10 @@
     <Compile Include="IntToContentConverter.cs" />
     <Compile Include="IntToRadioButtonConverter.cs" />
     <Compile Include="ListDataModel.cs" />
+    <Compile Include="ReminderConfig.cs" />
     <Compile Include="ReminderModel.cs" />
+    <Compile Include="ReminderScheduler.cs" />
+    <Compile Include="ReminderStorage.cs" />
     <Compile Include="Set.xaml.cs">
       <DependentUpon>Set.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
 ﻿using HandyControl.Controls;
+using NtpTestDemo;
 using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Reminder
 {
     public static class Helper
     {
+        public static myIcon ic = new myIcon();
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -94,20 +96,20 @@ namespace Reminder
         {
             if (listDataModel == null)
             {
-                Growl.Error("错误：数据对象为空。");
+                Growl.Warning("数据对象为空。");
                 return false;
             }
 
             // 标题和内容不能为空
             if (string.IsNullOrWhiteSpace(listDataModel.Title))
             {
-                Growl.Error("错误：标题不能为空。");
+                Growl.Warning("标题不能为空。");
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(listDataModel.Content))
             {
-                Growl.Error("错误：内容不能为空。");
+                Growl.Warning("内容不能为空。");
                 return false;
             }
 
@@ -115,7 +117,7 @@ namespace Reminder
             string timeStr = listDataModel.Time?.Trim();
             if (string.IsNullOrWhiteSpace(timeStr))
             {
-                Growl.Error("错误：时间不能为空。");
+                Growl.Warning("时间不能为空。");
                 return false;
             }
 
@@ -127,12 +129,12 @@ namespace Reminder
                 case 1: // 关闭：需要完整时间并且是未来时间
                     if (!DateTime.TryParseExact(timeStr, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime))
                     {
-                        Growl.Error("错误：关闭类型要求时间格式为 yyyy-MM-dd HH:mm:ss。");
+                        Growl.Warning("一次性类型要求时间格式为 yyyy-MM-dd HH:mm:ss。");
                         return false;
                     }
                     if (parsedTime <= now)
                     {
-                        Growl.Error($"错误：关闭类型要求时间在未来，当前时间为 {now}，输入时间为 {parsedTime}。");
+                        Growl.Warning($"一次性类型要求时间在未来，当前时间为 {now}，输入时间为 {parsedTime}。");
                         return false;
                     }
                     break;
@@ -141,7 +143,7 @@ namespace Reminder
                 //case 3: // 工作日：只校验时间格式（时分秒）
                 //    if (!DateTime.TryParseExact(timeStr, "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out _))
                 //    {
-                //        Growl.Error("错误：每日或工作日类型要求时间格式为 HH:mm:ss。");
+                //        Growl.Warning("错误：每日或工作日类型要求时间格式为 HH:mm:ss。");
                 //        return false;
                 //    }
                 //    break;
@@ -149,13 +151,13 @@ namespace Reminder
                 case 4: // 每月：校验 yyyy-MM-dd HH:mm:ss，但只判断月日时分秒是否合理
                     if (!DateTime.TryParseExact(timeStr, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime))
                     {
-                        Growl.Error("错误：每月类型要求时间格式为 yyyy-MM-dd HH:mm:ss。");
+                        Growl.Warning("每月类型要求时间格式为 yyyy-MM-dd HH:mm:ss。");
                         return false;
                     }
 
                     if (parsedTime.Day < 1 || parsedTime.Day > 31)
                     {
-                        Growl.Error("错误：每月类型中日期不合法（1-31）。");
+                        Growl.Warning("每月类型中日期不合法（1-31）。");
                         return false;
                     }
 
@@ -163,12 +165,19 @@ namespace Reminder
                     break;
 
                     //default:
-                    //    Growl.Error("错误：未知的循环类型。");
+                    //    Growl.Warning("错误：未知的循环类型。");
                     //    return false;
             }
 
             // 通过所有校验
             return true;
         }
+
+        private static readonly Random _random = new Random();
+        public static int GenerateRandomID()
+        {
+            return _random.Next(0, 1000);
+        }
+
     }
 }

@@ -27,7 +27,7 @@ namespace NtpTestDemo
             //this.notifyIcon.BalloonTipText = "Reminder is running...";
 
             //鼠标放在图标上时显示的文字
-            this.notifyIcon.Text = "Reminder-提肛助手🤡";
+            this.notifyIcon.Text = "Reminder-提肛助手V1.0.0🤡";
 
             //图标图片的位置，注意这里要用绝对路径
             var assembly = Assembly.GetExecutingAssembly();
@@ -62,7 +62,7 @@ namespace NtpTestDemo
             //this.notifyIcon.ShowBalloonTip(2000);
         }
 
-        public void SendNotify(String title, String content, int time = 2000)
+        public void SendNotify(String title, String content, int time = 100000)
         {
             // 设置气球提示的标题（这才是通知的“标题”）
             //this.notifyIcon.BalloonTipTitle = title;

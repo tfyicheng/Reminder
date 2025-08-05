@@ -68,6 +68,7 @@ namespace Reminder
                 // 处理选中逻辑
                 if (value != null)
                 {
+                    ReminderStorage.UpdateReminder(value);
                     EditModel = value;
                     EditStatus = 1;
                 }
@@ -78,7 +79,7 @@ namespace Reminder
         {
             datalist = new ObservableCollection<ListDataModel>();
             editStatus = 0;
-            NewSet();
+            InitModel();
         }
 
         #region addcmd
@@ -104,7 +105,11 @@ namespace Reminder
                 //添加
                 DataList.Insert(0, EditModel);
 
-                NewSet();
+                ReminderStorage.AddReminder(EditModel);
+
+                InitModel();
+
+                SelectedItem = null;
             }
 
         }
@@ -133,16 +138,13 @@ namespace Reminder
         public void NewSet()
         {
             EditStatus = 0;
-            EditModel = new ListDataModel()
+            if (EditModel != null)
             {
-                ID = DataList.Count + 1,
-                Title = "",
-                Content = "",
-                Time = "",
-                Type = 1,
-                Action = 1,
-                Status = 1,
-            };
+                ReminderStorage.UpdateReminder(EditModel);
+            }
+
+            InitModel();
+            SelectedItem = null;
 
         }
 
@@ -230,12 +232,13 @@ namespace Reminder
                 if (isRemoved)
                 {
                     Growl.Info("删除成功");
+                    ReminderStorage.DeleteReminder(EditModel.ID);
                 }
                 else
                 {
-                    Growl.Error("未找到该对象（可能已被删除或引用不匹配）");
+                    Growl.Warning("未找到该对象（可能已被删除或引用不匹配）");
                 }
-                NewSet();
+                InitModel();
             }
         }
 
@@ -244,6 +247,21 @@ namespace Reminder
             return true;
         }
         #endregion
+
+        public void InitModel()
+        {
+            EditModel = new ListDataModel()
+            {
+                ID = Helper.GenerateRandomID(),
+                Title = "",
+                Content = "",
+                Time = "",
+                Type = 1,
+                Action = 1,
+                Status = 0,
+            };
+        }
+
         public void test()
         {
             var ld = new ListDataModel()
