@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "D:\\work\\demo\\WPF\\Reminder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\remindermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:remindermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|d:\\work\\demo\\wpf\\reminder\\reminderscheduler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:reminderscheduler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|d:\\work\\demo\\wpf\\reminder\\timeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\timeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:timeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|d:\\work\\demo\\wpf\\reminder\\reminderstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\reminderstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:reminderstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\remindermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:remindermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,7 +31,7 @@
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|d:\\work\\demo\\wpf\\reminder\\listdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\listdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:listdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -39,7 +39,7 @@
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:appnotification.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|d:\\work\\demo\\wpf\\reminder\\reminderconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|D:\\work\\demo\\WPF\\Reminder\\reminderconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{753D71DB-A13A-42FA-95B1-A8B719A38D62}|Reminder.csproj|solutionrelative:reminderconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -62,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 432,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TimeFormatConverter.cs",
               "DocumentMoniker": "D:\\work\\demo\\WPF\\Reminder\\TimeFormatConverter.cs",
               "RelativeDocumentMoniker": "TimeFormatConverter.cs",
@@ -90,18 +90,17 @@
               "RelativeToolTip": "TimeFormatConverter.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAADwvx0AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T09:28:27.045Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T09:28:27.045Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ReminderScheduler.cs",
               "DocumentMoniker": "D:\\work\\demo\\WPF\\Reminder\\ReminderScheduler.cs",
               "RelativeDocumentMoniker": "ReminderScheduler.cs",
               "ToolTip": "D:\\work\\demo\\WPF\\Reminder\\ReminderScheduler.cs",
               "RelativeToolTip": "ReminderScheduler.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAYwFkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwEwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T03:47:07.915Z",
               "EditorCaption": ""
@@ -116,12 +115,11 @@
               "RelativeToolTip": "ReminderConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T01:33:24.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T01:33:24.706Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ReminderStorage.cs",
               "DocumentMoniker": "D:\\work\\demo\\WPF\\Reminder\\ReminderStorage.cs",
               "RelativeDocumentMoniker": "ReminderStorage.cs",
@@ -129,8 +127,7 @@
               "RelativeToolTip": "ReminderStorage.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAApwFEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T01:32:46.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T01:32:46.531Z"
             },
             {
               "$type": "Document",
@@ -141,8 +138,7 @@
               "ToolTip": "D:\\work\\demo\\WPF\\Reminder\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-02T05:49:10.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:49:10.952Z"
             },
             {
               "$type": "Document",
@@ -153,8 +149,7 @@
               "ToolTip": "D:\\work\\demo\\WPF\\Reminder\\AppNotification.xaml",
               "RelativeToolTip": "AppNotification.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-02T05:39:46.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:39:46.768Z"
             },
             {
               "$type": "Document",
@@ -166,18 +161,17 @@
               "RelativeToolTip": "ListDataModel.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAcwDAAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T07:53:30.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T07:53:30.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "ReminderModel.cs",
               "DocumentMoniker": "D:\\work\\demo\\WPF\\Reminder\\ReminderModel.cs",
               "RelativeDocumentMoniker": "ReminderModel.cs",
               "ToolTip": "D:\\work\\demo\\WPF\\Reminder\\ReminderModel.cs",
               "RelativeToolTip": "ReminderModel.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAADwv0IAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANYAAAAAAAAAAAAAAPEAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T07:51:31.736Z",
               "EditorCaption": ""
@@ -192,12 +186,11 @@
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAUwBoAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T09:18:40.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T09:18:40.188Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Helper.cs",
               "DocumentMoniker": "D:\\work\\demo\\WPF\\Reminder\\Helper.cs",
               "RelativeDocumentMoniker": "Helper.cs",
@@ -205,8 +198,7 @@
               "RelativeToolTip": "Helper.cs",
               "ViewState": "AgIAAIUAAAAAAAAAAAArwJcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T07:15:46.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T07:15:46.71Z"
             },
             {
               "$type": "Document",
@@ -217,8 +209,7 @@
               "ToolTip": "D:\\work\\demo\\WPF\\Reminder\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-31T06:56:35.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T06:56:35.715Z"
             },
             {
               "$type": "Document",
@@ -230,8 +221,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAADwvxkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T07:24:29.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T07:24:29.119Z"
             },
             {
               "$type": "Document",
@@ -243,8 +233,7 @@
               "RelativeToolTip": "AppNotification.xaml.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAowAoAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:41:10.564Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:41:10.564Z"
             }
           ]
         }

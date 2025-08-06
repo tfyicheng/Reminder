@@ -239,6 +239,7 @@ namespace Reminder
                     Growl.Warning("未找到该对象（可能已被删除或引用不匹配）");
                 }
                 InitModel();
+                EditStatus = 0;
             }
         }
 
