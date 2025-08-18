@@ -12,9 +12,9 @@
     MinWidth="400"
     MinHeight="500"
     Loaded="Main_Loaded"
+    PreviewKeyDown="Window_PreviewKeyDown"
     ResizeMode="CanResize"
     WindowStartupLocation="CenterScreen"
-    PreviewKeyDown="Window_PreviewKeyDown"
     mc:Ignorable="d">
 
     <Window.Resources>
@@ -275,55 +275,66 @@
 
                     </Grid>
 
-                    <StackPanel
-                        Grid.Row="1"
-                        Margin="10,7,0,0"
-                        Orientation="Horizontal">
-                        <Button
-                            Margin="10,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding AddCmd}"
-                            Content="添 加"
-                            Style="{StaticResource ButtonPrimary}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=0}" />
-                        <Button
-                            Margin="10,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding NewCmd}"
-                            Content="新增提醒"
-                            Style="{StaticResource ButtonPrimary}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
-                        <!--<Button
-                            Margin="10,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding SaveCmd}"
-                            Content="保 存"
-                            Style="{StaticResource ButtonPrimary}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />
-                        <Button
-                            Margin="10,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding EditCmd}"
-                            Content="编 辑"
-                            Style="{StaticResource ButtonSuccess}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
-                        <Button
-                            Margin="10,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding CancelCmd}"
-                            Content="取 消"
-                            Style="{StaticResource ButtonWarning}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />-->
 
-                        <Button
-                            Margin="20,0,0,0"
-                            hc:BorderElement.CornerRadius="5"
-                            Command="{Binding DeletCmd}"
-                            Content="删 除"
-                            Style="{StaticResource ButtonDanger}"
-                            Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1|2}" />
-                    </StackPanel>
+                    <DockPanel Grid.Row="1">
+                        <Label
+                            Width="27"
+                            Height="27"
+                            Margin="0,10,0,0"
+                            hc:BorderElement.CornerRadius="50"
+                            DockPanel.Dock="Right"
+                            Foreground="Gray">
+                            ?
+                            <Label.ToolTip>
+                                <ToolTip xml:space="preserve">1. esc热键关闭窗口  &#x0A;2. 鼠标悬停设置选项以查看说明  &#x0A;3. 移动程序主体时注意连带同目录下的config.json文件</ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <StackPanel Margin="10,7,0,0" Orientation="Horizontal">
+                            <Button
+                                Margin="10,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding AddCmd}"
+                                Content="添 加"
+                                Style="{StaticResource ButtonPrimary}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=0}" />
+                            <Button
+                                Margin="10,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding NewCmd}"
+                                Content="新增提醒"
+                                Style="{StaticResource ButtonPrimary}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
+                            <!--<Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding SaveCmd}"
+             Content="保 存"
+             Style="{StaticResource ButtonPrimary}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />
+         <Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding EditCmd}"
+             Content="编 辑"
+             Style="{StaticResource ButtonSuccess}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
+         <Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding CancelCmd}"
+             Content="取 消"
+             Style="{StaticResource ButtonWarning}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />-->
 
+                            <Button
+                                Margin="20,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding DeletCmd}"
+                                Content="删 除"
+                                Style="{StaticResource ButtonDanger}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1|2}" />
+                        </StackPanel>
+                    </DockPanel>
                 </Grid>
             </hc:Card>
 
