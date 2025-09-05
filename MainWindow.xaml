@@ -1,0 +1,770 @@
+﻿<Window
+    x:Class="Reminder.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Reminder"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Reminder"
+    Width="650"
+    Height="700"
+    MinWidth="500"
+    MinHeight="600"
+    Loaded="Main_Loaded"
+    PreviewKeyDown="Window_PreviewKeyDown"
+    ResizeMode="CanResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <local:IntToRadioButtonConverter x:Key="IntRadioConverter" />
+        <local:IntEqualsVisibilityConverter x:Key="IntVisConverter" />
+        <local:TimeFormatConverter x:Key="TimeFormatConverter" />
+        <Style x:Key="tbHead" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#F6F7F8" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Width" Value="auto" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
+    </Window.Resources>
+
+    <hc:TransitioningContentControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <hc:Card
+                Grid.Row="0"
+                Width="auto"
+                Height="auto"
+                Margin="10"
+                BorderThickness="0"
+                Effect="{DynamicResource EffectShadow2}">
+                <!--<hc:Card.Header>
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        Text="设置"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="NoWrap" />
+                </hc:Card.Header>-->
+
+                <Grid Margin="0,8,8,8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid
+                            Grid.Row="0"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                标 题
+                            </TextBlock>
+
+                            <hc:TextBox
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="输入标题"
+                                hc:InfoElement.ShowClearButton="True"
+                                IsEnabled="True"
+                                Text="{Binding EditModel.Title}" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="1"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                内 容
+                            </TextBlock>
+
+                            <hc:TextBox
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="输入内容"
+                                hc:InfoElement.ShowClearButton="True"
+                                IsEnabled="True"
+                                Text="{Binding EditModel.Content}" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="2"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                时 间
+                            </TextBlock>
+
+                            <hc:DateTimePicker
+                                x:Name="timePicker"
+                                Grid.Column="1"
+                                Height="30"
+                                hc:InfoElement.Placeholder="选择时间"
+                                hc:InfoElement.ShowClearButton="True"
+                                IsEnabled="True"
+                                Style="{StaticResource DateTimePickerPlus}"
+                                Text="{Binding EditModel.Time, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="3"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                循 环
+                            </TextBlock>
+
+
+
+                            <hc:ButtonGroup
+                                x:Name="btnGroup"
+                                Grid.Column="1"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Cursor="Hand"
+                                IsEnabled="True">
+                                <RadioButton Content="一次性" IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=1}" />
+                                <RadioButton
+                                    Content="间隔"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=5}"
+                                    ToolTip="默认截取时分秒" />
+                                <RadioButton
+                                    Content="每日"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}"
+                                    ToolTip="默认截取时分秒" />
+                                <RadioButton
+                                    Content="工作日"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}"
+                                    ToolTip="默认截取时分秒" />
+                                <RadioButton
+                                    Content="每月"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=4}"
+                                    ToolTip="默认截取日时分秒" />
+                                <RadioButton
+                                    Content="每年"
+                                    IsChecked="{Binding EditModel.Type, Converter={StaticResource IntRadioConverter}, ConverterParameter=6}"
+                                    ToolTip="默认截取月日时分秒" />
+                            </hc:ButtonGroup>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="4"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                动 作
+                            </TextBlock>
+
+                            <StackPanel
+                                Grid.Column="1"
+                                Height="30"
+                                Cursor="Hand"
+                                IsEnabled="True"
+                                Orientation="Horizontal">
+                                <RadioButton
+                                    Content="系统通知"
+                                    GroupName="ActionGroup"
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=1}"
+                                    ToolTip="该api通知不会记录进系统通知栏，几秒后自动消失，需要保留通知建议右下角弹窗" />
+
+                                <RadioButton
+                                    Margin="30,0,0,0"
+                                    Content="右下角弹窗"
+                                    GroupName="ActionGroup"
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=2}"
+                                    ToolTip="右下角弹窗通知，需要手动关闭" />
+
+                                <RadioButton
+                                    Margin="30,0,0,0"
+                                    Content="中间弹窗"
+                                    GroupName="ActionGroup"
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=3}"
+                                    ToolTip="当程序界面关闭时，桌面居中弹窗，当主程序未关闭时，程序界面居中弹窗，需要手动关闭" />
+
+                                <RadioButton
+                                    Margin="30,0,0,0"
+                                    Content="WebHook"
+                                    GroupName="ActionGroup"
+                                    IsChecked="{Binding EditModel.Action, Converter={StaticResource IntRadioConverter}, ConverterParameter=4}"
+                                    ToolTip="确保设置页配置的通知api可用" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="5"
+                            Height="40"
+                            Background="#fff">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <local:IntToBooleanConverter x:Key="IntBoolConverter" />
+                                <local:IntToContentConverter x:Key="IntContentConverter" />
+                            </Grid.Resources>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                状 态
+                            </TextBlock>
+
+                            <ToggleButton
+                                Grid.Column="1"
+                                Height="20"
+                                Margin="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                hc:VisualElement.HighlightBrush="{DynamicResource SuccessBrush}"
+                                Content="{Binding EditModel.Status, Converter={StaticResource IntContentConverter}}"
+                                Cursor="Hand"
+                                IsChecked="{Binding EditModel.Status, Converter={StaticResource IntBoolConverter}}"
+                                IsEnabled="True"
+                                Style="{StaticResource ToggleButtonSwitch.Small}" />
+                        </Grid>
+
+                    </Grid>
+
+                    <DockPanel Grid.Row="1">
+
+                        <Label
+                            Width="27"
+                            Height="27"
+                            Margin="10,10,0,0"
+                            Padding="0"
+                            hc:BorderElement.CornerRadius="50"
+                            Cursor="Hand"
+                            DockPanel.Dock="Right"
+                            FontWeight="bold"
+                            Foreground="Gray"
+                            MouseLeftButtonDown="Label_MouseLeftButtonDown">
+                            <Viewbox
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,0,0"
+                                DockPanel.Dock="Right">
+                                <Canvas Width="1024" Height="1024">
+                                    <Path Data="M506.368 675.328A163.328 163.328 0 1 0 343.04 512a163.84 163.84 0 0 0 163.328 163.328zM124.928 512a417.792 417.792 0 0 1 7.68-80.384A142.848 142.848 0 0 0 242.176 358.4a153.6 153.6 0 0 0 5.632-138.752 377.344 377.344 0 0 1 142.848-87.04 139.776 139.776 0 0 0 235.008 0A377.856 377.856 0 0 1 768 220.672 153.6 153.6 0 0 0 774.656 358.4a142.848 142.848 0 0 0 104.96 71.68 418.816 418.816 0 0 1-3.072 175.104 143.36 143.36 0 0 0-102.4 73.216 153.6 153.6 0 0 0-10.752 125.952 377.856 377.856 0 0 1-146.432 88.064 139.264 139.264 0 0 0-219.648 0 376.832 376.832 0 0 1-146.432-86.016 153.6 153.6 0 0 0-9.728-129.024 142.848 142.848 0 0 0-106.496-73.728A416.768 416.768 0 0 1 124.928 512z" Fill="gray" />
+                                </Canvas>
+                            </Viewbox>
+                            <Label.ToolTip>
+                                <ToolTip xml:space="preserve">设置</ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+
+                        <Label
+                            Width="27"
+                            Height="27"
+                            Margin="0,10,0,0"
+                            hc:BorderElement.CornerRadius="50"
+                            Cursor="Hand"
+                            DockPanel.Dock="Right"
+                            FontWeight="bold"
+                            Foreground="Gray">
+                            ?
+                            <Label.ToolTip>
+                                <ToolTip xml:space="preserve">1. esc热键关闭窗口  &#x0A;2. 鼠标悬停设置选项以查看说明  &#x0A;3. 移动程序主体时注意连带同目录下的config.json文件</ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+
+                        <StackPanel
+                            Margin="10,7,0,0"
+                            Cursor="Hand"
+                            Orientation="Horizontal">
+                            <Button
+                                Margin="10,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding AddCmd}"
+                                Content="添 加"
+                                Style="{StaticResource ButtonPrimary}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=0}" />
+                            <Button
+                                Margin="10,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding NewCmd}"
+                                Content="新增提醒"
+                                Style="{StaticResource ButtonPrimary}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
+                            <!--<Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding SaveCmd}"
+             Content="保 存"
+             Style="{StaticResource ButtonPrimary}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />
+         <Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding EditCmd}"
+             Content="编 辑"
+             Style="{StaticResource ButtonSuccess}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1}" />
+         <Button
+             Margin="10,0,0,0"
+             hc:BorderElement.CornerRadius="5"
+             Command="{Binding CancelCmd}"
+             Content="取 消"
+             Style="{StaticResource ButtonWarning}"
+             Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=2}" />-->
+
+                            <Button
+                                Margin="20,0,0,0"
+                                hc:BorderElement.CornerRadius="5"
+                                Command="{Binding DeletCmd}"
+                                Content="删 除"
+                                Style="{StaticResource ButtonDanger}"
+                                Visibility="{Binding EditStatus, Converter={StaticResource IntVisConverter}, ConverterParameter=1|2}" />
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+            </hc:Card>
+
+            <Grid Grid.Row="1">
+                <TabControl
+                    Margin="10,0,0,-2"
+                    HorizontalAlignment="Left"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    SelectedValue="{Binding SelectedType, Mode=TwoWay}"
+                    SelectedValuePath="Tag"
+                    Style="{StaticResource TabControlSliding}">
+                    <TabItem Header="全部" Tag="0" />
+                    <TabItem Header="一次性" Tag="1" />
+                    <TabItem Header="间隔" Tag="5" />
+                    <TabItem Header="每日" Tag="2" />
+                    <TabItem Header="工作日" Tag="3" />
+                    <TabItem Header="每月" Tag="4" />
+                    <TabItem Header="每年" Tag="6" />
+                </TabControl>
+            </Grid>
+
+            <hc:Card
+                Grid.Row="2"
+                Width="auto"
+                Height="auto"
+                Margin="10,5,10,10"
+                BorderThickness="0"
+                Effect="{DynamicResource EffectShadow2}">
+                <!--<hc:Card.Header>
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource TextBlockDefault}"
+                        Text="提醒列表"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="NoWrap" />
+                </hc:Card.Header>-->
+
+                <Grid>
+                    <DataGrid
+                        x:Name="dataGrid"
+                        Margin="0"
+                        AutoGenerateColumns="False"
+                        Background="#F6F7F8"
+                        ColumnHeaderStyle="{StaticResource tbHead}"
+                        HorizontalScrollBarVisibility="Auto"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding DataList}"
+                        SelectedItem="{Binding SelectedItem}"
+                        VerticalScrollBarVisibility="Auto">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content.Text}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridCell">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <!--  手动定义列（避免自动列宽问题）  -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="40"
+                                MaxWidth="40"
+                                Binding="{Binding ID}"
+                                Header="ID" />
+                            <DataGridTextColumn
+                                Width="2*"
+                                Binding="{Binding Title}"
+                                Header="标题" />
+                            <DataGridTextColumn
+                                Width="2*"
+                                hc:Poptip.Content="{Binding Content}"
+                                Binding="{Binding Content}"
+                                Header="内容" />
+                            <!--<DataGridTextColumn
+                                Width="2*"
+                                Binding="{Binding Time}"
+                                Header="时间" />-->
+
+                            <DataGridTemplateColumn Width="2*" Header="时间">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource TimeFormatConverter}">
+                                                    <Binding Path="Time" />
+                                                    <Binding Path="Type" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="*" Header="循环类型">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            x:Name="border"
+                                            Margin="2,1"
+                                            Padding="8,2"
+                                            HorizontalAlignment="Center"
+                                            CornerRadius="4">
+                                            <TextBlock>
+                                                <TextBlock.Style>
+                                                    <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Type}" Value="1">
+                                                                <Setter Property="Text" Value="一次性" />
+                                                                <Setter Property="Foreground" Value="Black" />
+                                                                <Setter Property="FontWeight" Value="Normal" />
+                                                                <!--  设置 Border 的背景色  -->
+                                                                <Setter Property="Tag" Value="White" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="2">
+                                                                <Setter Property="Text" Value="每日" />
+                                                                <Setter Property="Tag" Value="#E0F7FA" />
+                                                                <!--  浅蓝  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="3">
+                                                                <Setter Property="Text" Value="工作日" />
+                                                                <Setter Property="Tag" Value="#FFF3E0" />
+                                                                <!--  浅橙  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="4">
+                                                                <Setter Property="Text" Value="每月" />
+                                                                <Setter Property="Tag" Value="#E8F5E8" />
+                                                                <!--  浅绿  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="5">
+                                                                <Setter Property="Text" Value="间隔" />
+                                                                <Setter Property="Tag" Value="#FFAAD2" />
+                                                                <!--  浅玫红  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="6">
+                                                                <Setter Property="Text" Value="每年" />
+                                                                <Setter Property="Tag" Value="#DAB4D9" />
+                                                                <!--  浅紫  -->
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <!--  用触发器设置 Border 的 Background  -->
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Type}" Value="1">
+                                                <Setter TargetName="border" Property="Background" Value="White" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#CCCCCC" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="2">
+                                                <Setter TargetName="border" Property="Background" Value="#E0F7FA" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="3">
+                                                <Setter TargetName="border" Property="Background" Value="#FFF3E0" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="4">
+                                                <Setter TargetName="border" Property="Background" Value="#E8F5E8" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="5">
+                                                <Setter TargetName="border" Property="Background" Value="#FFAAD2" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="6">
+                                                <Setter TargetName="border" Property="Background" Value="#DAB4D9" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="*" Header="提醒动作">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            x:Name="border"
+                                            Margin="2,1"
+                                            Padding="8,2"
+                                            HorizontalAlignment="Center"
+                                            CornerRadius="4">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                        <Setter Property="FontWeight" Value="SemiBold" />
+                                                        <Setter Property="FontSize" Value="12" />
+
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Action}" Value="1">
+                                                                <Setter Property="Text" Value="系统" />
+                                                                <Setter Property="Tag" Value="#E3F2FD" />
+                                                                <!--  浅蓝  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Action}" Value="2">
+                                                                <Setter Property="Text" Value="右下角" />
+                                                                <Setter Property="Tag" Value="#FFF8E1" />
+                                                                <!--  浅黄  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Action}" Value="3">
+                                                                <Setter Property="Text" Value="中间" />
+                                                                <Setter Property="Tag" Value="#E8F5E8" />
+                                                                <!--  浅绿  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Action}" Value="4">
+                                                                <Setter Property="Text" Value="WebHook" />
+                                                                <Setter Property="Tag" Value="#A7F3E4" />
+                                                                <!--  浅青  -->
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <!--  根据 Action 设置 Border 背景色  -->
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Action}" Value="1">
+                                                <Setter TargetName="border" Property="Background" Value="#E3F2FD" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#90CAF9" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Action}" Value="2">
+                                                <Setter TargetName="border" Property="Background" Value="#FFF8E1" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#FFB74D" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Action}" Value="3">
+                                                <Setter TargetName="border" Property="Background" Value="#E8F5E8" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#81C784" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Action}" Value="4">
+                                                <Setter TargetName="border" Property="Background" Value="#A7F3E4" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#1ABB9B" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="*" Header="状态">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            x:Name="border"
+                                            Margin="2,1"
+                                            Padding="12,2"
+                                            HorizontalAlignment="Center"
+                                            CornerRadius="10">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                        <Setter Property="FontWeight" Value="Bold" />
+                                                        <Setter Property="FontSize" Value="12" />
+                                                        <Setter Property="Foreground" Value="White" />
+                                                        <!--  白字更清晰  -->
+
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Status}" Value="0">
+                                                                <Setter Property="Text" Value="停止" />
+                                                                <Setter Property="Tag" Value="#F44336" />
+                                                                <!--  红  -->
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="1">
+                                                                <Setter Property="Text" Value="活动" />
+                                                                <Setter Property="Tag" Value="#4CAF50" />
+                                                                <!--  绿  -->
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <!--  设置 Border 背景颜色  -->
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Status}" Value="0">
+                                                <Setter TargetName="border" Property="Background" Value="#F44336" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Status}" Value="1">
+                                                <Setter TargetName="border" Property="Background" Value="#4CAF50" />
+                                                <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!--<DataGridTemplateColumn Width="*" Header="循环类型">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Style>
+                                                    <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Type}" Value="1">
+                                                                <Setter Property="Text" Value="一次性" />
+                                                                <Setter Property="Background" Value="white" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="2">
+                                                                <Setter Property="Text" Value="每日" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="3">
+                                                                <Setter Property="Text" Value="工作日" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="4">
+                                                                <Setter Property="Text" Value="每周" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Type}" Value="5">
+                                                                <Setter Property="Text" Value="每月" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
+
+                            <!--<DataGridTemplateColumn Width="*" Header="提醒动作">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Action}" Value="1">
+                                                            <Setter Property="Text" Value="系统通知" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Action}" Value="2">
+                                                            <Setter Property="Text" Value="右下角弹窗" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Action}" Value="3">
+                                                            <Setter Property="Text" Value="中间弹窗" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
+
+                            <!--<DataGridTemplateColumn Width="*" Header="状态">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}" Value="0">
+                                                            <Setter Property="Text" Value="停止" />
+                                                            <Setter Property="Foreground" Value="red" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="1">
+                                                            <Setter Property="Text" Value="活动" />
+                                                            <Setter Property="Foreground" Value="Green" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </hc:Card>
+        </Grid>
+    </hc:TransitioningContentControl>
+
+</Window>

@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "extends": "",
+  "SetModel": {
+    "MusicPath": "",
+    "RequestApi0": "",
+    "RequestType0": "Post",
+    "RequestBody0": "",
+    "Run0": false,
+    "Run1": false
+  },
+  "reminders": [
+    {
+      "ID": 764,
+      "Title": "一次性提醒",
+      "Content": "一次性提醒",
+      "Time": "2025-09-04 14:57:00",
+      "Type": 1,
+      "Action": 1,
+      "Status": 0
+    },
+    {
+      "ID": 278,
+      "Title": "工作日提醒",
+      "Content": "走走走",
+      "Time": "2025-08-12 10:29:00",
+      "Type": 3,
+      "Action": 2,
+      "Status": 1
+    },
+    {
+      "ID": 28,
+      "Title": "每月提醒",
+      "Content": "联通王卡权益",
+      "Time": "2025-08-01 13:09:00",
+      "Type": 4,
+      "Action": 2,
+      "Status": 1
+    },
+    {
+      "ID": 709,
+      "Title": "2点红包",
+      "Content": "2点红包",
+      "Time": "2025-08-09 13:59:00",
+      "Type": 2,
+      "Action": 1,
+      "Status": 1
+    },
+    {
+      "ID": 205,
+      "Title": "4点红包",
+      "Content": "4点红包",
+      "Time": "2025-08-09 15:59:00",
+      "Type": 2,
+      "Action": 1,
+      "Status": 1
+    },
+    {
+      "ID": 98,
+      "Title": "10点红包",
+      "Content": "10点红包",
+      "Time": "2025-08-09 09:59:00",
+      "Type": 2,
+      "Action": 1,
+      "Status": 1
+    },
+    {
+      "ID": 857,
+      "Title": "9点半新店",
+      "Content": "9点半新店",
+      "Time": "2025-08-09 09:30:00",
+      "Type": 2,
+      "Action": 2,
+      "Status": 1
+    },
+    {
+      "ID": 8,
+      "Title": "问结果",
+      "Content": "",
+      "Time": "2025-09-11 10:00:15",
+      "Type": 1,
+      "Action": 2,
+      "Status": 1
+    },
+    {
+      "ID": 131,
+      "Title": "测试间隔",
+      "Content": "测试",
+      "Time": "2025-09-04 02:00:00",
+      "Type": 5,
+      "Action": 1,
+      "Status": 1
+    },
+    {
+      "ID": 92,
+      "Title": "测试每年",
+      "Content": "每年",
+      "Time": "2025-09-04 15:45:30",
+      "Type": 6,
+      "Action": 3,
+      "Status": 0
+    }
+  ]
+}
