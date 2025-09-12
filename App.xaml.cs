@@ -27,7 +27,7 @@ namespace NtpTestDemo
             //this.notifyIcon.BalloonTipText = "Reminder is running...";
 
             //鼠标放在图标上时显示的文字
-            this.notifyIcon.Text = "Reminder-提肛助手V1.0.0🤡";
+            this.notifyIcon.Text = "Reminder-提肛助手V1.2🤡";
 
             //图标图片的位置，注意这里要用绝对路径
             var assembly = Assembly.GetExecutingAssembly();

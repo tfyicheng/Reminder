@@ -102,6 +102,16 @@ namespace Reminder
             //校验对象合法?
             if (Helper.CheckListData(EditModel))
             {
+                //补全内容
+                if (string.IsNullOrWhiteSpace(EditModel.Title))
+                {
+                    EditModel.Title = EditModel.Content;
+                };
+                if (string.IsNullOrWhiteSpace(EditModel.Content))
+                {
+                    EditModel.Content = EditModel.Title;
+                };
+
                 //添加
                 DataList.Insert(0, EditModel);
 
@@ -261,68 +271,6 @@ namespace Reminder
                 Action = 1,
                 Status = 0,
             };
-        }
-
-        public void test()
-        {
-            var ld = new ListDataModel()
-            {
-                ID = 1,
-                Title = $"标题",
-                Type = 1,
-                Status = 0,
-                Action = 1,
-                Time = $"2021-09-20 21:20:21",
-                Content = $"content",
-            };
-            var ld2 = new ListDataModel()
-            {
-                ID = 2,
-                Title = $"标题标题标题标题标题",
-                Type = 2,
-                Status = 1,
-                Action = 2,
-                Time = $"04:20:20",
-                Content = $"contencontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentt",
-            };
-            var ld3 = new ListDataModel()
-            {
-                ID = 3,
-                Title = $"333标题",
-                Type = 3,
-                Status = 1,
-                Action = 3,
-                Time = $"2025-08-20 20:20:23",
-                Content = $"3content",
-            };
-
-            var ld4 = new ListDataModel()
-            {
-                ID = 44,
-                Title = $"444444444444444444444标题",
-                Type = 4,
-                Status = 0,
-                Action = 3,
-                Time = $"2021-07-21 09:12:20",
-                Content = $"3content",
-            };
-
-            var ld5 = new ListDataModel()
-            {
-                ID = 999,
-                Title = $"55yyyyy标题",
-                Type = 5,
-                Status = 5,
-                Action = 5,
-                Time = $"",
-                Content = $"",
-            };
-            datalist.Add(ld);
-            datalist.Add(ld2);
-            datalist.Add(ld3);
-            datalist.Add(ld4);
-            datalist.Add(ld5);
-
         }
     }
 }

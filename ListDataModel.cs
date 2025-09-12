@@ -66,14 +66,13 @@ public class ListDataModel : ViewModelBase
     {
         get => status;
         set
-        {   // && 
+        {
             if (status != value)
             {
                 if (value == 1)
                 {
                     if (Helper.CheckListData(this))
                     {
-
                         status = value;
                         OnPropertyChanged("Status");
                     }

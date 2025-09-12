@@ -3,31 +3,58 @@
   "extends": "",
   "reminders": [
     {
-      "ID": 673,
-      "Title": "10点红包",
-      "Content": "10点红包",
-      "Time": "2025-08-06 09:59:00",
+      "ID": 764,
+      "Title": "一次性提醒",
+      "Content": "一次性提醒",
+      "Time": "2025-09-12 15:36:00",
+      "Type": 1,
+      "Action": 3,
+      "Status": 0
+    },
+    {
+      "ID": 756,
+      "Title": "每日提醒",
+      "Content": "每日提醒",
+      "Time": "2025-08-10 15:37:00",
       "Type": 2,
       "Action": 1,
       "Status": 1
     },
     {
-      "ID": 907,
-      "Title": "14点红包",
-      "Content": "14点红包",
-      "Time": "2025-08-06 13:59:00",
+      "ID": 276,
+      "Title": "每日提醒2",
+      "Content": "每日提醒2",
+      "Time": "2025-08-10 15:37:30",
       "Type": 2,
-      "Action": 1,
+      "Action": 3,
       "Status": 1
     },
     {
-      "ID": 49,
-      "Title": "16点红包",
-      "Content": "16点红包",
-      "Time": "2025-08-06 15:59:00",
-      "Type": 2,
-      "Action": 1,
+      "ID": 278,
+      "Title": "工作日提醒",
+      "Content": "工作日提醒",
+      "Time": "2025-08-12 15:38:00",
+      "Type": 3,
+      "Action": 3,
       "Status": 1
+    },
+    {
+      "ID": 28,
+      "Title": "每月提醒",
+      "Content": "每月提醒",
+      "Time": "2025-08-12 15:38:00",
+      "Type": 4,
+      "Action": 2,
+      "Status": 1
+    },
+    {
+      "ID": 460,
+      "Title": "一次性提醒2",
+      "Content": "一次性提醒2",
+      "Time": "2025-09-12 15:36:00",
+      "Type": 1,
+      "Action": 1,
+      "Status": 0
     }
   ]
 }

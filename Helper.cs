@@ -101,17 +101,17 @@ namespace Reminder
             }
 
             // 标题和内容不能为空
-            if (string.IsNullOrWhiteSpace(listDataModel.Title))
+            if (string.IsNullOrWhiteSpace(listDataModel.Title) && string.IsNullOrWhiteSpace(listDataModel.Content))
             {
-                Growl.Warning("标题不能为空。");
+                Growl.Warning("标题或内容其中一项不能为空。");
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(listDataModel.Content))
-            {
-                Growl.Warning("内容不能为空。");
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(listDataModel.Content))
+            //{
+            //    Growl.Warning("内容不能为空。");
+            //    return false;
+            //}
 
             // 校验时间字段
             string timeStr = listDataModel.Time?.Trim();
